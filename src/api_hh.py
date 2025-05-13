@@ -1,5 +1,6 @@
 import requests
 from abc import ABC, abstractmethod
+from typing import List, Dict
 
 
 class Api(ABC):
@@ -19,7 +20,7 @@ class HH(Api):
         self.__url = 'https://api.hh.ru/vacancies'
         self.__params = {'text': '', 'page': 0, 'per_page': 10}
 
-    def connect_to_api(self):
+    def connect_to_api(self)-> None:
         """Метод подключения к API"""
         try:
             response = requests.get(self.__url)
@@ -28,7 +29,7 @@ class HH(Api):
         except requests.exceptions.RequestException as e:
             raise Exception(f"Ошибка подключения: {e}")
 
-    def get_vacancies(self, keyword, per_page):
+    def get_vacancies(self, keyword, per_page) -> List[Dict]:
         """Метод преобразования ответа с АПИ в Python объект"""
         self.connect_to_api()
         self.__params['text'] = keyword

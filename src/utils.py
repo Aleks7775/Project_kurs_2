@@ -1,7 +1,8 @@
 import json
+from typing import List
 
 
-def filter_keyword_vacancy(vacancy, word):
+def filter_keyword_vacancy(vacancy, word) -> List[dict]:
     """Получение вакансий по ключевому слову"""
     word_list = []
     for i in vacancy:
@@ -11,7 +12,7 @@ def filter_keyword_vacancy(vacancy, word):
     return word_list
 
 
-def filter_salary_range(filter_vacancy, salary_range):
+def filter_salary_range(filter_vacancy, salary_range) -> List[dict]:
     """функция считает диапазон зарплат от и до"""
     list_ = []
     for i in filter_vacancy:
@@ -20,7 +21,7 @@ def filter_salary_range(filter_vacancy, salary_range):
     return list_
 
 
-def to_dict(filtered):
+def to_dict(filtered) -> List[dict]:
     """Функция преобразует ответ пользователя в читаемы формат"""
     filtered_json = []
     for i in filtered:

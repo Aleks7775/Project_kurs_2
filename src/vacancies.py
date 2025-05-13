@@ -1,3 +1,6 @@
+from typing import List, Dict
+
+
 class Vacancies:
     """Класс для работы с вакансиями"""
     __slots__ = ('name', 'alternate_url', 'salary', 'snippet')
@@ -8,7 +11,7 @@ class Vacancies:
         self.salary = self.__validate_salary(salary.get('from') if salary else None)
         self.snippet = snippet.get('requirement', 'Описание не указано')
 
-    def __validate_salary(self, salary):
+    def __validate_salary(self, salary) -> int:
         """Валидация зарплаты"""
         if salary is None:
             return 0
@@ -34,7 +37,7 @@ class Vacancies:
         return self.salary == other.salary
 
     @classmethod
-    def hh_vacancies(cls, vacancies_data):
+    def hh_vacancies(cls, vacancies_data) -> List['Vacancies']:
         """Преобразовывает список словарей в список объектов Vacancy"""
         return [
             cls(

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import json
 import os
+from typing import List, Dict, Union
 
 
 path_ = os.path.join('..', 'data', 'example.json')
@@ -23,13 +24,13 @@ class Saver(ABC):
 
 
 class JSONSaver(Saver):
-    def add_vacancy(self, path, file):
+    def add_vacancy(self, path, file) -> str:
         """ добавления данных в файл"""
         with open(path, 'w') as f:
             json.dump(file, f, ensure_ascii=False, indent=4)
             return "Файл добавлен"
 
-    def receiving_data(self, file):
+    def receiving_data(self, file) -> str:
         """ получения данных из файла """
         try:
             with open(file, 'r', encoding='utf-8') as f:
@@ -37,7 +38,7 @@ class JSONSaver(Saver):
         except FileNotFoundError:
             return "Файл отсутствует"
 
-    def delete_vacancy(self, file):
+    def delete_vacancy(self, file) -> str:
         """ удаления данных из файла"""
         with open(file, 'r+') as f:
             f.truncate(0)
